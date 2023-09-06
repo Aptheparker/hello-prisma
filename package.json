@@ -74,11 +74,9 @@
     "testEnvironment": "node"
   },
   "lint-staged": {
-    "lint-staged": {
-      "**/*.{ts}": [
-        "prettier --write",
-        "eslint --fix"
-      ]
-    }
+    "**/*.{ts}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }
