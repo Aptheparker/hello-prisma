@@ -38,7 +38,7 @@ export class AppController { // CRUD controller
 
   @Get('feed') // get all posts
   async getPublishedPosts(): Promise<PostModel[]> {
-    return this.postService.posts({
+    return this.postService.posts({ // get all posts that are published
       where: { published: true },
     });
   }
