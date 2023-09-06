@@ -25,14 +25,14 @@ import { PostService } from './post.service'; // CRUD services
 import { User as UserModel, Post as PostModel } from '@prisma/client'; // Models
 
 @Controller()
-export class AppController {
-  constructor(
+export class AppController { // CRUD controller
+  constructor( // inject servicess
     private readonly userService: UserService,
     private readonly postService: PostService,
   ) {}
 
   @Get('post/:id') // get post by id
-  async getPostById(@Param('id') id: string): Promise<PostModel> {
+  async getPostById(@Param('id') id: string): Promise<PostModel> { // param id as string, return post
     return this.postService.post({ id: Number(id) });
   }
 
