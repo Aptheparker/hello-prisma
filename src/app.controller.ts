@@ -23,22 +23,28 @@ import {
 import { UserService } from './user.service'; // CRUD services
 import { PostService } from './post.service'; // CRUD services
 import { User as UserModel, Post as PostModel } from '@prisma/client'; // Models
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller()
-export class AppController { // CRUD controller
-  constructor( // inject servicess
+export class AppController {
+  // CRUD controller
+  constructor(
+    // inject servicess
     private readonly userService: UserService,
     private readonly postService: PostService,
   ) {}
 
   @Get('post/:id') // get post by id
-  async getPostById(@Param('id') id: string): Promise<PostModel> { // param id as string, return post
+  @ApiOperation({ description: 'Find post by id' })
+  async getPostById(@Param('id') id: string): Promise<PostModel> {
+    // param id as string, return post
     return this.postService.post({ id: Number(id) });
   }
 
   @Get('feed') // get all posts
   async getPublishedPosts(): Promise<PostModel[]> {
-    return this.postService.posts({ // get all posts that are published
+    return this.postService.posts({
+      // get all posts that are published
       where: { published: true },
     });
   }
